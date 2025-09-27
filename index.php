@@ -27,20 +27,31 @@ require_once 'settings/core.php';
 <body>
 
 	<div class="menu-tray">
-		<?php if (isset($_SESSION['user_id'])): ?>
+		<?php if (is_logged_in()): ?>
 			<span class="me-2">Hello, <strong><?php echo $_SESSION['user_name']; ?></strong></span>
-			<a href="logout.php" class="btn btn-sm btn-outline-danger">Logout</a>
-        <?php else: ?>
+			<a href="settings/logout.php" class="btn btn-sm btn-outline-danger">Logout</a>
+
+			<?php if (is_admin()): ?>
+				<a href="admin/category.php" class="btn btn-sm btn-outline-success">Category</a>
+			<?php endif; ?>
+
+		<?php else: ?>
 			<span class="me-2">Menu:</span>
 			<a href="login/register.php" class="btn btn-sm btn-outline-primary">Register</a>
 			<a href="login/login.php" class="btn btn-sm btn-outline-secondary">Login</a>
-        <?php endif; ?>
+		<?php endif; ?>
 	</div>
 
 	<div class="container" style="padding-top:120px;">
 		<div class="text-center">
 			<h1>Welcome</h1>
-			<p class="text-muted">Use the menu in the top-right to Register or Login.</p>
+			<p class="text-muted">
+				<?php if (is_logged_in()): ?>
+					Use the top-right menu to manage your account <?php if (is_admin()) echo "or categories."; ?>
+				<?php else: ?>
+					Use the menu in the top-right to Register or Login.
+				<?php endif; ?>
+			</p>
 		</div>
 	</div>
 

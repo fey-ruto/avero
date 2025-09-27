@@ -1,0 +1,13 @@
+# OS + editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# PHP / secrets
+settings/db_cred.php
+.env
+
+# Composer 
+vendor/
+composer.lock
